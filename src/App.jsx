@@ -35,7 +35,7 @@ const App = () => {
       return;
     }
     const data = {
-      email: decodedTokens.email,
+      email: decodedTokens.userEmail,
       newPassword: password,
     };
     fetch("https://sarada.letsgotnt.com/api/v1/auth/reset-password", {
