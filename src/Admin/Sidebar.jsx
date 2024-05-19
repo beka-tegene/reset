@@ -9,7 +9,7 @@ const Sidebar = () => {
       </div>
       <nav className="mt-10">
         <NavLink
-          to="/admin/users"
+          to="/admin/user-list"
           className={({ isActive }) => `block px-4 py-2 ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'}`}
         >
           User List

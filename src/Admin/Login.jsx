@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
@@ -20,18 +20,19 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://your-api-url.com/api/v1/auth/login', {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://gratify.letsgotnt.com/api/v1/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
-      // Assuming the response contains a token
-      Cookies.set('token', response.data.token);
+      Cookies.set("token", response.data.token);
 
-      // Redirect to another page after successful login
-      navigate('/dashboard');
+      navigate("/admin/user-list");
     } catch (error) {
-      setError('Invalid email or password');
+      setError("Invalid email or password");
     }
   };
 
