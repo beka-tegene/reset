@@ -4,17 +4,12 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+  const handlePhoneNumberChange = (e) => {
+    setPhoneNumber(e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -22,17 +17,12 @@ const Login = () => {
     try {
       const response = await axios.post(
         "https://gratify.letsgotnt.com/api/v1/auth/login",
-        {
-          email,
-          password,
-        }
+        { phoneNumber }
       );
-
       Cookies.set("token", response.data.token);
-
       navigate("/admin/user-list");
     } catch (error) {
-      setError("Invalid email or password");
+      setError("Invalid Phone Number");
     }
   };
 
@@ -43,27 +33,14 @@ const Login = () => {
         {error && <p className="text-center text-red-500">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-1">
-            <label htmlFor="email" className="block font-medium">
-              Email:
+            <label htmlFor="phoneNumber" className="block font-medium">
+              Phone Number:
             </label>
             <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={handleEmailChange}
-              required
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div className="space-y-1">
-            <label htmlFor="password" className="block font-medium">
-              Password:
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={handlePasswordChange}
+              type="phoneNumber"
+              id="phoneNumber"
+              value={phoneNumber}
+              onChange={handlePhoneNumberChange}
               required
               className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
